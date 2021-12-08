@@ -1,0 +1,11 @@
+#!/bin/bash
+
+GOPROOT=/usr/local/go
+
+echo "Fixing permissions"
+cd $GOPROOT
+find . -exec chmod ugo+r \{\} \;
+find bin -exec chmod ugo+rx \{\} \;
+find . -type d -exec chmod ugo+rx \{\} \;
+chmod o-w .
+

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<installer-script minSpecVersion="1.000000">
+    <title>gop</title>
+    <options customize="never" allow-external-scripts="no"/>
+    <domains enable_localSystem="true" />
+    <installation-check script="installCheck();"/>
+    <script>
+function installCheck() {
+    if(system.files.fileExistsAtPath('/usr/local/gop/')) {
+        my.result.title = 'Previous Installation Detected';
+        my.result.message = 'A previous installation of gop exists at /usr/local/gop. This installer will remove the previous installation prior to installing. Please back up any data before proceeding.';
+        my.result.type = 'Warning';
+        return false;
+    }
+    return true;
+}
+    </script>
+    <choices-outline>
+        <line choice="org.goplus.gop.choice"/>
+    </choices-outline>
+    <choice id="org.goplus.gop.choice" title="gop">
+        <pkg-ref id="org.goplus.gop.pkg"/>
+    </choice>
+    <pkg-ref id="org.goplus.gop.pkg" auth="Root">org.goplus.gop.pkg</pkg-ref>
+</installer-script>
